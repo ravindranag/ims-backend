@@ -3,7 +3,7 @@ CREATE TYPE "OrderStatus" AS ENUM ('Placed', 'Processed', 'Delivered');
 
 -- CreateTable
 CREATE TABLE "User" (
-    "id" INT4 NOT NULL DEFAULT unique_rowid(),
+    "id" STRING NOT NULL,
     "email" STRING NOT NULL,
     "password" STRING NOT NULL,
 
@@ -12,52 +12,52 @@ CREATE TABLE "User" (
 
 -- CreateTable
 CREATE TABLE "Admin" (
-    "id" INT4 NOT NULL DEFAULT unique_rowid(),
+    "id" STRING NOT NULL,
     "name" STRING NOT NULL,
-    "userId" INT4 NOT NULL,
+    "userId" STRING NOT NULL,
 
     CONSTRAINT "Admin_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Seller" (
-    "id" INT4 NOT NULL DEFAULT unique_rowid(),
+    "id" STRING NOT NULL,
     "name" STRING NOT NULL,
-    "userId" INT4 NOT NULL,
+    "userId" STRING NOT NULL,
 
     CONSTRAINT "Seller_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Customer" (
-    "id" INT4 NOT NULL DEFAULT unique_rowid(),
+    "id" STRING NOT NULL,
     "name" STRING NOT NULL,
     "address" STRING NOT NULL,
-    "userId" INT4 NOT NULL,
+    "userId" STRING NOT NULL,
 
     CONSTRAINT "Customer_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Product" (
-    "id" INT4 NOT NULL DEFAULT unique_rowid(),
+    "id" STRING NOT NULL,
     "name" STRING NOT NULL,
     "description" STRING,
     "price" FLOAT8 NOT NULL,
     "quantity" INT4 NOT NULL,
-    "sellerId" INT4 NOT NULL,
+    "sellerId" STRING NOT NULL,
 
     CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "ProductOrder" (
-    "id" INT4 NOT NULL DEFAULT unique_rowid(),
+    "id" STRING NOT NULL,
     "quantity" INT4 NOT NULL,
     "amount" FLOAT8 NOT NULL,
-    "customerId" INT4 NOT NULL,
+    "customerId" STRING NOT NULL,
     "status" "OrderStatus" NOT NULL DEFAULT 'Placed',
-    "productId" INT4 NOT NULL,
+    "productId" STRING NOT NULL,
 
     CONSTRAINT "ProductOrder_pkey" PRIMARY KEY ("id")
 );

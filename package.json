@@ -11,17 +11,19 @@
     "@prisma/client": "^4.12.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "jose": "^4.13.1"
   },
   "devDependencies": {
     "prisma": "^4.12.0"
   },
   "scripts": {
-	"migrate:dev": "prisma migrate dev",
-	"migrate:deploy": "prisma migrate deploy",
-	"dev": "nodemon src/app.js",
-	"start": "node src/app.js",
-	"format": "prisma format",
-	"generate": "prisma generate"
+    "migrate:dev": "prisma migrate dev",
+    "migrate:deploy": "prisma migrate deploy",
+    "dev": "nodemon src/app.js",
+    "start": "node src/app.js",
+    "format": "prisma format",
+    "generate": "prisma generate",
+    "studio": "prisma studio"
   }
 }
