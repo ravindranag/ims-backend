@@ -27,8 +27,8 @@ export const placeOrder = async (data) => {
 			data: {
 				customerId: data.customerId,
 				productId: data.productId,
-				quantity: data.quantity,
-				amount: data.amount
+				quantity: parseInt(data.quantity),
+				amount: parseFloat(data.amount)
 			},
 			include: {
 				customer: true,
