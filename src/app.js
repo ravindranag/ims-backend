@@ -1,10 +1,16 @@
 import express, { json, urlencoded } from 'express'
 import 'dotenv/config'
 import appRoutes from './router/index.js'
+import cors from 'cors'
 
 const port = process.env.PORT || 8000
 
 const app = express()
+
+app.use(cors({
+	origin: 'https://ims-vssut.web.app'
+}))
+
 app.use(json())
 app.use(urlencoded({
 	extended: true
