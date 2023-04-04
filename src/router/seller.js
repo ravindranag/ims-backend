@@ -1,6 +1,5 @@
+import { Router } from "express";
 import { createNewSellerController, loginSellerController } from "../controller/seller.js";
-
-const { Router } = require("express");
 
 const sellerRouter = Router()
 
