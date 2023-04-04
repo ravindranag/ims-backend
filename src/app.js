@@ -5,10 +5,22 @@ import cors from 'cors'
 
 const port = process.env.PORT || 8000
 
+const whitelist = [
+	'https://ims-vssut.web.app',
+	'http://localhost:3000'
+]
+
 const app = express()
 
 app.use(cors({
-	origin: 'https://ims-vssut.web.app'
+	origin: function(origin, callback) {
+		// console.log('origin', origin)
+		if (whitelist.indexOf(origin) !== -1 || origin === undefined) {
+			callback(null, true)
+		} else {
+			callback(new Error('Not allowed by CORS'))
+		}
+	}
 }))
 
 app.use(json())
