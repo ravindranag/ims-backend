@@ -41,7 +41,7 @@ export const placeOrder = async (data) => {
 			},
 			data: {
 				quantity: {
-					decrement: data.quantity
+					decrement: parseInt(data.quantity)
 				}
 			}
 		})
