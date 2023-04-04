@@ -33,7 +33,7 @@ export const loginAdminController =  async (req, res, next) => {
 		const jwt = await generateToken({
 			userId: user.id,
 			role: 'Admin',
-			profile: user.admin
+			admin: user.admin
 		})
 		return res.json(jwt)
 	}

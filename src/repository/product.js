@@ -9,3 +9,18 @@ export const getAllProduct = async () => {
 		return null
 	}
 }
+
+export const addNewProduct = async (sellerId, productDetails) => {
+	try {
+		const newProduct = await prisma.product.create({
+			data: {
+				...productDetails,
+				sellerId: sellerId
+			}
+		})
+		return newProduct
+	}
+	catch(err) {
+		throw err
+	}
+}
