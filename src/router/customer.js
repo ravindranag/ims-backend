@@ -7,5 +7,6 @@ const customerRouter = Router()
 customerRouter.post('/create', createNewCustomerController)
 customerRouter.post('/login', loginCustomerController)
 customerRouter.post('/order', verifyCustomer, placeOrderController)
+customerRouter.get('/order', verifyCustomer, )
 
 export default customerRouter

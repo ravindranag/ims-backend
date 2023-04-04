@@ -1,6 +1,6 @@
 import { generateToken } from "../lib/jose/jwt.js"
 import prisma from "../lib/prisma/init.js"
-import { createCustomer, placeOrder } from "../repository/customer.js"
+import { createCustomer, getOrder, placeOrder } from "../repository/customer.js"
 
 export const createNewCustomerController = async (req, res, next) => {
 	try {
@@ -48,6 +48,17 @@ export const placeOrderController = async (req, res, next) => {
 		data['customerId'] = req.locals.customer.id
 		const order = await placeOrder(data)
 		res.json(order)
+	}
+	catch(err) {
+		next(err)
+	}
+}
+
+export const getOrderController = async (req, res, next) => {
+	try {
+		const customerId = req.locals.customer.id
+		const orders = await getOrder(customerId)
+		res.json(orders)
 	}
 	catch(err) {
 		next(err)

@@ -51,3 +51,20 @@ export const placeOrder = async (data) => {
 		throw err
 	}
 }	
+
+export const getOrder = async (customerId) => {
+	try {
+		const orders = await prisma.productOrder.findMany({
+			where: {
+				customerId: customerId
+			},
+			include: {
+				product: true
+			}
+		})
+		return orders
+	}
+	catch(err) {
+		throw err
+	}
+}
