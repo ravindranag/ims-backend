@@ -17,3 +17,21 @@ export const verifySeller = async (req, res, next) => {
 		return res.sendStatus(403)
 	}
 }
+
+export const verifyCustomer = async (req, res, next) => {
+	try {
+		const token = req.headers.authorization
+		if(!token) {
+			return res.status(403).json('Invalid token')
+		}
+		const payload = await verifyToken(token)
+		if(payload.role !== 'Customer') {
+			return res.status(403).json('You need to be a customer to access this resource')
+		}
+		req.locals = payload
+		next()
+	}
+	catch(err) {
+		return res.sendStatus(403)
+	}
+}

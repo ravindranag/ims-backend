@@ -1,9 +1,9 @@
 import { Router } from "express";
 import { verifySeller } from "../lib/utils/auth-helper.js";
-import { addNewProductController } from "../controller/product.js";
+import { addNewProductController, getAllProductController } from "../controller/product.js";
 
 const productRouter = Router()
 
-productRouter.get('/')
+productRouter.get('/', getAllProductController)
 
 export default productRouter
