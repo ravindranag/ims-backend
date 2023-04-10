@@ -21,17 +21,16 @@ describe('Login Test', () => {
 				password: 'adminaaa'
 			})
 		expect(res.statusCode).toBe(400)
+		expect(res.body).toEqual('Wrong password')
 	})
-	// it('POST /admin/login with invalid email', async () => {
-	// 	request(app)
-	// 		.post('/admin/login')
-	// 		.send({
-	// 			email: 'adminaa@gmail.com',
-	// 			password: 'admina'
-	// 		})
-	// 		.expect(400)
-	// 		.end((err, res) => {
-	// 			expect(res.body).toEqual('No User found')
-	// 		})
-	// })
+	it('POST /admin/login with invalid email', async () => {
+		const res = await request(app)
+			.post('/admin/login')
+			.send({
+				email: 'adminaa@gmail.com',
+				password: 'admina'
+			})
+		expect(res.statusCode).toBe(400)
+		expect(res.body).toEqual('No User found')
+	})
 })

@@ -34,13 +34,15 @@ describe('Add product', () => {
 			.set('Authorization', invalidSellerToken)
 			.send(productDetails[0])
 		expect(res.statusCode).toBe(403)
+		expect(res.text).toEqual('Forbidden')
 	})
-	// it('POST /seller/product with valid credentials, invalid product name', async () => {
-	// 	const res = await request(app)
-	// 		.post('/seller/product')
-	// 		.set('Authorization', validSellerToken)
-	// 		.send(productDetails[0])
-	// })
+	it('POST /seller/product with valid credentials, invalid product name', async () => {
+		const res = await request(app)
+			.post('/seller/product')
+			.set('Authorization', validSellerToken)
+			.send(productDetails[0])
+		expect()
+	})
 	// it('POST /seller/product with valid credentials, quantity <= 0', async () => {
 	// 	const res = await request(app)
 	// 		.post('/seller/product')
