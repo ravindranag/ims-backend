@@ -16,7 +16,31 @@ export const createNewSeller = async (data) => {
 		return true
 	}
 	catch(err) {
-		// console.log(err)
-		return false
+		throw err
+	}
+}
+
+export const sellerExists = async (email) => {
+	try {
+		const count = await prisma.user.count({
+			where: {
+				email: email
+			}
+		})
+		return count > 0 ? true : false
+	} catch(err) {
+		throw err
+	}
+}
+
+export const deleteSeller = async (email) => {
+	try {
+		await prisma.user.delete({
+			where: {
+				email: email
+			}
+		})
+	} catch(err) {
+		throw err
 	}
 }

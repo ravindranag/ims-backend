@@ -1,13 +1,21 @@
 import { generateToken } from "../lib/jose/jwt.js"
 import prisma from "../lib/prisma/init.js"
-import { createNewSeller } from "../repository/seller.js"
+import { createNewSeller, deleteSeller, sellerExists } from "../repository/seller.js"
 
 export const createNewSellerController = async (req, res, next) => {
 	try {
 		const data = req.body
-		console.log(data)
+		if(!data.name) {
+			throw Error('Name is required')
+		}
+		if(await sellerExists(data.email)) {
+			throw Error('Seller already exists')
+		}
 		if(!await createNewSeller(data)) {
 			return res.status(400).json('Cannot create seller')
+		}
+		if(process.env.NODE_ENV === 'test') {
+			await deleteSeller(data.email)
 		}
 		return res.sendStatus(201)
 	}

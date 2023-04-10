@@ -31,7 +31,7 @@
     "generate": "prisma generate",
     "studio": "prisma studio",
     "build": "yarn; yarn migrate:deploy; yarn generate",
-    "test": "cross-env NODE_ENV=test jest --testTimeout=10000 --coverage --runInBand",
+    "test": "cross-env NODE_ENV=test jest --verbose --testTimeout=10000 --coverage --runInBand",
     "pretest": "cross-env NODE_ENV=test",
     "migrate:reset": "dotenv -e .env.test -- yarn prisma migrate reset"
   },
