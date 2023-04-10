@@ -31,11 +31,13 @@ app.use(urlencoded({
 app.use(appRoutes)
 
 app.use((err, req, res, next) => {
-	res.status(500).json(err.message || 'Internal Server Error')
+	res.status(400).json(err.message || 'Internal Server Error')
 })
 
-app.listen(port, () => {
-	console.log('[server] Listening on port', port)
-})
+if(process.env.NODE_ENV !== 'test') {
+	app.listen(port, () => {
+		console.log('[server] Listening on port', port)
+	})
+}
 
 export default app
