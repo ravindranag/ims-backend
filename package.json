@@ -24,6 +24,7 @@
     "start": "node src/app.js",
     "format": "prisma format",
     "generate": "prisma generate",
-    "studio": "prisma studio"
+    "studio": "prisma studio",
+	"build": "yarn; yarn migrate:deploy; yarn generate"
   }
 }
