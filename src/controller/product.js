@@ -1,4 +1,4 @@
-import { addNewProduct, getAllProduct } from "../repository/product.js"
+import { addNewProduct, getAllProduct, getProductReport } from "../repository/product.js"
 
 export const addNewProductController = async (req, res, next) => {
 	try {
@@ -18,6 +18,15 @@ export const getAllProductController = async (req, res, next) => {
 		res.json(allProducts)
 	}
 	catch(err) {
+		next(err)
+	}
+}
+
+export const getProductReportController = async (req, res, next) => {
+	try {
+		const report = await getProductReport()
+		return res.json({ report })
+	} catch(err) {
 		next(err)
 	}
 }

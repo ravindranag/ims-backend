@@ -27,3 +27,25 @@ export const addNewProduct = async (sellerId, productDetails) => {
 		throw err
 	}
 }
+
+export const getProductReport = async () => {
+	try {
+		const report = await prisma.product.findMany({
+			select: {
+				_count: {
+					select: {
+						orderedBy: true
+					}
+				},
+				id: true,
+				name: true,
+				price: true,
+				quantity: true,
+				soldBy: true
+			}
+		})
+		return report
+	} catch(err) {
+		throw err
+	}
+}
