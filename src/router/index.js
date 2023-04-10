@@ -7,6 +7,10 @@ import customerRouter from "./customer.js";
 
 const appRoutes = Router()
 
+appRoutes.get('/status', (req, res, next) => {
+	res.json('OK')
+})
+
 appRoutes.use('/auth', authRouter)
 appRoutes.use('/admin', adminRouter)
 appRoutes.use('/product', productRouter)
