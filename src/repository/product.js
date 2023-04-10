@@ -12,6 +12,9 @@ export const getAllProduct = async () => {
 
 export const addNewProduct = async (sellerId, productDetails) => {
 	try {
+		if(productDetails.name.length <= 0) throw Error('Product name is required')
+		if(productDetails.quantity <= 0) throw Error('Quantity should not be <= 0')
+		if(productDetails.price <= 0) throw Error('Price should not be <= 0')
 		const newProduct = await prisma.product.create({
 			data: {
 				...productDetails,

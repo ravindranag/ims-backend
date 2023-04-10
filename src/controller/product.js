@@ -5,7 +5,7 @@ export const addNewProductController = async (req, res, next) => {
 		const { seller } = req.locals
 		const data = req.body
 		const newProduct = await addNewProduct(seller.id, data)
-		return res.json(newProduct)
+		return res.sendStatus(201)
 	}
 	catch(err) {
 		next(err)
